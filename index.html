@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-96x96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  
+<title>Nazim Hussain — AI Engineer</title>
+<style>
+:root {
+    --bg: #f5f3ee;
+    --bg-alt: #ebe7df;
+    --text: #1a1a1a;
+    --text-dim: #6b6b63;
+    --accent: #2e6f4e;
+    --accent-soft: #dce8e0;
+    --border: #d8d4cb;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --radius: 4px;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0d1410;
+    --bg-alt: #141d17;
+    --text: #e8ece9;
+    --text-dim: #8a9690;
+    --accent: #5fd99c;
+    --accent-soft: #1c2b22;
+    --border: #233029;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a:focus-visible { color: var(--text); }
+
+  .theme-toggle {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .theme-toggle:hover { transform: rotate(20deg); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 .highlight {
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    max-width: 640px;
+  }
+
+  .hero-desc {
+    max-width: 600px;
+    color: var(--text-dim);
+    margin-bottom: 2.2rem;
+    font-size: 1.05rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.85rem 1.6rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #06140d;
+    border-color: var(--accent);
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+  .btn-outline {
+    color: var(--text);
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section {
+    padding: 6rem 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    margin-bottom: 3rem;
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-tag::before { content: "// "; }
+
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p { color: var(--text-dim); margin-bottom: 1.2rem; }
+  .about-text strong { color: var(--text); font-weight: 600; }
+
+  .info-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+
+  .info-card .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-card .row:last-child { border-bottom: none; }
+  .info-card .row span:first-child { color: var(--text-dim); }
+  .info-card .row span:last-child { text-align: right; }
+
+  /* ===== SKILLS ===== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .skill-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  .skill-card h3 {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tags span {
+    font-size: 0.78rem;
+    font-family: var(--mono);
+    background: var(--accent-soft);
+    color: var(--text);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+
+  /* ===== PROJECTS ===== */
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent); }
+
+  .project-card.featured {
+    grid-template-columns: 1fr;
+    border-color: var(--accent);
+    position: relative;
+  }
+
+  .project-card.featured::before {
+    content: "FEATURED";
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: var(--accent);
+    color: #06140d;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.7rem;
+    letter-spacing: 0.1em;
+    border-radius: 0 var(--radius) 0 var(--radius);
+  }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--border);
+    line-height: 1;
+  }
+
+  .project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .project-card p {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .project-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-features span {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius);
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .project-links a {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .project-links a:hover { color: var(--accent); }
+
+  /* ===== EXPERIENCE / TIMELINE ===== */
+  .timeline {
+    border-left: 2px solid var(--border);
+    padding-left: 2rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -2.45rem;
+    top: 0.3rem;
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+  }
+
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-item h3 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+  .timeline-item h4 {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+
+  .timeline-item ul {
+    list-style: none;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+
+  .timeline-item li {
+    padding-left: 1.2rem;
+    position: relative;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-item li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-section {
+    text-align: center;
+  }
+
+  .contact-section .section-head { display: flex; flex-direction: column; align-items: center; }
+  .contact-section .section-tag::before { content: "// "; }
+
+  .contact-section p {
+    color: var(--text-dim);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 5%;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  /* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE — TABLET ===== */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== RESPONSIVE — MOBILE ===== */
+  @media (max-width: 640px) {
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 1.2rem 4%;
+      gap: 1rem;
+      z-index: 99;
+    }
+    .nav-links.open a { font-size: 1rem; padding: 0.4rem 0; }
+    .hero { min-height: 80vh; padding: 5rem 4% 3rem; }
+    .eyebrow { font-size: 0.78rem; }
+    .hero-sub { font-size: 0.9rem; }
+    .hero-desc { font-size: 0.95rem; }
+    .hero-cta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .hero-cta .btn { width: 100%; justify-content: center; }
+    section { padding: 4rem 4%; }
+    .section-head { margin-bottom: 2rem; }
+    .info-card { font-size: 0.8rem; }
+    .info-card .row { flex-direction: column; gap: 0.15rem; padding: 0.7rem 0; }
+    .info-card .row span:last-child { text-align: left; color: var(--text); }
+    .skills-grid { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 1fr; padding: 1.4rem; gap: 1rem; }
+    .project-num { display: none; }
+    .project-card.featured::before { font-size: 0.65rem; padding: 0.25rem 0.55rem; }
+    .timeline { padding-left: 1.4rem; }
+    .timeline-item::before { left: -1.85rem; width: 10px; height: 10px; }
+    .timeline-item h3 { font-size: 1rem; }
+    .timeline-item h4 { font-size: 0.85rem; }
+    .timeline-item ul { font-size: 0.85rem; }
+    .contact-links { flex-direction: column; align-items: center; }
+    .contact-links .btn { width: 100%; max-width: 320px; justify-content: center; }
+    footer { font-size: 0.75rem; padding: 1.5rem 4%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<nav>
+  <div class="logo">Nazim Hussain</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:0.8rem;">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">final-year AI engineering student open to work</div>
+  <h1>Nazim Hussain<br>builds <span class="highlight">intelligent systems</span> that ship.</h1>
+  <p class="hero-sub">AI Engineer · LLM Engineer & Fine-Tuner · RAG Specialist · Full Stack Developer</p>
+  <p class="hero-desc">
+    I design and deploy AI that operates at the edge of what's possible - RAG pipelines that 
+    reason over multilingual legal documents, agentic systems that act and adapt autonomously, 
+    trading solutions driven by real-time market intelligence, and computer vision that sees 
+    with precision. Python, TensorFlow, OpenCV, LangChain, and more - not listed, lived.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects →</a>
+    <a href="Nazim Resume .pdf" class="btn btn-outline" download>Download Resume</a>
+    <a href="https://github.com/nazim-hussain1" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+    <a href="https://www.linkedin.com/in/nazim-hussain-508b49212/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <div>About</div>
+    <h2>Who I am</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>final-year Bachelor of Science in Artificial Intelligence</strong> student at
+        Quaid-e-Awam University of Engineering, Sciences &amp; Technology, expecting to graduate in 2026.
+      </p>
+      <p>
+        My work spans <strong>Machine Learning, Deep Learning, and Computer Vision</strong> building
+        systems like digit recognition models, automated trading bots, and real-time face recognition
+        applications. More recently I've focused on <strong>LLMs, RAG pipelines, and vector search</strong>,
+        combining FAISS and BM25 retrieval with re-ranking to build applications like a multilingual
+        legal advisor.
+      </p>
+      <p>
+        <strong>My stack</strong> Python, LangChain, Flask, FastAPI, TensorFlow, OpenCV — tools I've pushed into
+        production, not just listed on a resume.
+      </p>
+    </div>
+    <div class="info-card">
+      <div class="row"><span>Location</span><span>karachi, Sindh, PK</span></div>
+      <div class="row"><span>Education</span><span>BS Artificial Intelligence, 2026</span></div>
+      <div class="row"><span>Email</span><span>nazimali8172@gmail.com</span></div>
+      <div class="row"><span>Phone</span><span>0333-7006557</span></div>
+      <div class="row"><span>Certifications</span><span>AI Essentials, GenAI Capstone (Coursera)</span></div>
+      <div class="row"><span>Kaggle</span><span>9 badges, active</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head">
+    <div>Skills</div>
+    <h2>What I work with</h2>
+  </div>
+  <div class="skills-grid">
+    
+    <div class="skill-card">
+      <h3>AI / Machine Learning</h3>
+      <div class="skill-tags">
+        <span>Python</span>
+        <span>Machine Learning</span>
+        <span>Deep Learning</span>
+        <span>Transformers</span>
+        <span>PyTorch</span>
+        <span>TensorFlow</span>
+        <span>Scikit-learn</span>
+        <span>ANN</span>
+        <span>CNN</span>
+        <span>NLP</span>
+        <span>LLMs</span>
+        <span>RAG</span>
+        <span>Prompt Engineering</span>
+        <span>MLOps</span>
+        <span>Fine-tuning</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Backend</h3>
+      <div class="skill-tags">
+        <span>Flask</span>
+        <span>FastAPI</span>
+        <span>Django</span>
+        <span>REST APIs</span>
+        <span>GraphQL</span>
+        <span>PostgreSQL</span>
+        <span>SQLite</span>
+        <span>MongoDB</span>
+        <span>Redis</span>
+        <span>JWT / OAuth</span>
+        <span>Docker</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>AI Tools</h3>
+      <div class="skill-tags">
+        <span>OpenAI</span>
+        <span>OpenRouter</span>
+        <span>Hugging Face</span>
+        <span>LangChain</span>
+        <span>LangGraph</span>
+        <span>LlamaIndex</span>
+        <span>FAISS</span>
+        <span>BM25</span>
+        <span>Pinecone</span>
+        <span>Chroma</span>
+        <span>Gradio</span>
+        <span>Streamlit</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Frontend</h3>
+      <div class="skill-tags">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>Tailwind CSS</span>
+        <span>JavaScript</span>
+        <span>TypeScript</span>
+        <span>React</span>
+        <span>Next.js</span>
+        <span>Shadcn/ui</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Dev Tools</h3>
+      <div class="skill-tags">
+        <span>Git</span>
+        <span>GitHub</span>
+        <span>GitHub Actions</span>
+        <span>Docker</span>
+        <span>Docker Compose</span>
+        <span>Vercel</span>
+        <span>Netlify</span>
+        <span>Postman</span>
+        <span>VS Code</span>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <h3>Computer Vision</h3>
+      <div class="skill-tags">
+        <span>OpenCV</span>
+        <span>YOLOv8</span>
+        <span>Image Classification</span>
+        <span>Object Detection</span>
+        <span>Facial Recognition</span>
+        <span>Real-time Tracking</span>
+        <span>MediaPipe</span>
+        <span>Segmentation</span>
+        <span>Pose Estimation</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head">
+    <div>Projects</div>
+    <h2>Featured work</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <div>
+        <h3>Pakistan Legal Advisor</h3>
+        <p>
+          A multilingual (Urdu &amp; English) legal assistant powered by a RAG pipeline. Combines
+          FAISS and BM25 retrieval with re-ranking over a structured legal knowledge base, then
+          uses an LLM to generate grounded, context-aware answers.
+        </p>
+        <div class="project-features">
+          <span>Multilingual (Urdu/English)</span>
+          <span>RAG Pipeline</span>
+          <span>FAISS + BM25 Retrieval</span>
+          <span>Re-ranking</span>
+          <span>LLM Integration</span>
+          <span>Legal Knowledge Base</span>
+        </div>
+        <div class="project-links">
+          <a href="https://huggingface.co/spaces/nazhussain/Pakistan-Legal-Advisor" target="_blank" rel="noopener">Live Demo →</a>
+          <a href="https://huggingface.co/spaces/nazhussain/Pakistan-Legal-Advisor/tree/main" target="_blank" rel="noopener">Source Code →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div>
+        <h3>Digit Recognition System</h3>
+        <p>
+          A CNN trained on MNIST achieving 98% accuracy, using dropout and data augmentation to
+          improve generalization. Deployed via Flask for live, real-time digit prediction.
+        </p>
+        <div class="project-features">
+          <span>CNN</span>
+          <span>MNIST</span>
+          <span>98% Accuracy</span>
+          <span>Flask Deployment</span>
+        </div>
+        <div class="project-links">
+          <a href="https://digit-recognizer-flask.onrender.com" target="_blank" rel="noopener">Live Demo →</a>
+          <a href="https://huggingface.co/spaces/nazhussain/Digit-Recognition-System" target="_blank" rel="noopener">Source Code →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div>
+        <h3>AI-Powered Trading Bot</h3>
+        <p>
+          An automated trading bot using OpenCV for chart analysis combined with Python logic
+          to generate buy/sell signals based on volume, structure breaks, and retests.
+        </p>
+        <div class="project-features">
+          <span>OpenCV</span>
+          <span>Algorithmic Trading</span>
+          <span>Python Automation</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener">Live Demo →</a>
+          <a href="https://github.com/yourusername/ai-trading-bot" target="_blank" rel="noopener">Source Code →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div>
+        <h3>Face Recognition System</h3>
+        <p>
+          Real-time face detection and recognition built with OpenCV and FaceNet, optimized
+          for fast, secure access on edge devices.
+        </p>
+        <div class="project-features">
+          <span>OpenCV</span>
+          <span>FaceNet</span>
+          <span>Real-time</span>
+          <span>Edge Devices</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank" rel="noopener">Live Demo →</a>
+          <a href="https://github.com/yourusername/face-recognition-system" target="_blank" rel="noopener">Source Code →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-head">
+    <div>Experience</div>
+    <h2>Where I've worked</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jan 2022 — Jan 2023</div>
+      <h3>Computer Operator</h3>
+      <h4>Citizen Police Liaison Committee (CPLC), SBA</h4>
+      <ul>
+        <li>Managed and maintained computer systems and databases</li>
+        <li>Supported data entry, verification, and reporting tasks</li>
+        <li>Helped troubleshoot software and hardware issues</li>
+        <li>Ensured system reliability and uptime, working with teams to improve workflow and data efficiency</li>
+      </ul>
+    </div>
+
+<div class="timeline-item">
+  <div class="timeline-date">Expected Graduation 2026</div>
+  <h3>BS Artificial Intelligence</h3>
+  <h4>Quaid-e-Awam University of Engineering, Sciences &amp; Technology</h4>
+  <ul>
+    <li>Final year Student in Artificial Intelligence with a strong academic focus on Machine Learning, Deep Learning, Computer Vision, and Natural Language Processing</li>
+    <li>Actively engaged in advanced coursework including Neural Networks, Transformers, Computer Vision, NLP, MLOps, and Optimization Techniques</li>
+    <li>Built several end-to-end AI projects as part of academic requirements and personal initiatives, including a multilingual RAG-based Legal Advisor, real-time Facial Recognition System, Digit Recognition model, and AI-powered Trading Bot</li>
+    <li>Developed practical skills in modern AI frameworks and tools such as PyTorch, TensorFlow/Keras, LangChain, OpenCV, FAISS, and deployment platforms (FastAPI, Docker, Streamlit)</li>
+    <li>Active participant in Kaggle competitions, earning 9 badges and consistently applying classroom concepts to real-world datasets</li>
+    <li>Collaborated on group projects and research-oriented assignments, focusing on building production-ready AI systems with emphasis on performance, scalability, and ethical AI practices</li>
+    <li>Regularly attend seminars, workshops, and technical sessions organized by the university’s AI &amp; Computing department to stay updated with emerging technologies</li>
+  </ul>
+</div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-head">
+    <div>Contact</div>
+    <h2>Let's build something</h2>
+  </div>
+  <p>
+    I'm actively seeking AI/ML internships, full-time opportunities, and impactful collaborations. 
+    Whether you're hiring, building, or exploring innovative ideas, I'd love to connect.
+
+  </p>
+  <div class="contact-links">
+  <a href="https://github.com/nazim-hussain1/" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
+  <a href="https://www.linkedin.com/in/nazim-hussain-508b49212/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
+</div>
+</section>
+
+<footer>
+    <span class="footer-name">© 2026 Nazim Hussain</span>
+    <br>
+    <span class="footer-quote">Building the Future, One Breakthrough at a Time</span>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+
+  function setTheme(theme) {
+    body.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('theme', theme);
+  }
+
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    setTheme(saved);
+  } else {
+    setTheme('dark');
+  }
+
+  toggle.addEventListener('click', () => {
+    const current = body.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  // Mobile nav
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+</script>
+
+</body>
+</html>
