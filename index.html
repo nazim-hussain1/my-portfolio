@@ -797,6 +797,7 @@ footer {
   font-size: 0.95rem;
 }
 .chat-mic-btn { background: var(--bg-soft); color: var(--text-dim); border: 1px solid var(--border); }
+.chat-mic-btn svg { width: 1.05rem; height: 1.05rem; }
 .chat-mic-btn.listening { background: var(--accent); color: #fff; border-color: var(--accent); animation: pulse 1.2s infinite; }
 
 @media (max-width: 640px) {
@@ -1200,17 +1201,19 @@ footer {
 
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
-    <div class="title">Chat with Nazim<small>AI assistant, replying as him</small></div>
+    <div class="title">Chat with Nazim<small>An AI agent replying for him</small></div>
     <div class="chat-header-actions">
       <button class="chat-icon-btn" id="voiceOutToggle" aria-label="Toggle spoken replies" title="Toggle spoken replies">🔊</button>
       <button class="chat-icon-btn" id="chatClose" aria-label="Close chat">✕</button>
     </div>
   </div>
   <div class="chat-messages" id="chatMessages">
-    <div class="chat-msg bot">Hey, I'm Nazim 👋 Well — an AI trained on my info, answering here so I can chat with you anytime. Ask me about my projects, skills, or experience!</div>
+    <div class="chat-msg bot">Hey, I'm Nazim How may I help you today?</div>
   </div>
   <div class="chat-input-row">
-    <button class="chat-mic-btn" id="chatMic" aria-label="Voice input" title="Speak your question">🎤</button>
+    <button class="chat-mic-btn" id="chatMic" aria-label="Voice input" title="Speak your question">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+    </button>
     <input type="text" id="chatInput" placeholder="Type a message..." autocomplete="off">
     <button class="chat-send-btn" id="chatSend" aria-label="Send">➤</button>
   </div>
@@ -1228,14 +1231,14 @@ Facts about Nazim (use "I/my" when stating these):
 - Based in Karachi, Pakistan. Email: nazimali8172@gmail.com
 - Certifications: AI Essentials and GenAI (Coursera). Active on Kaggle with 9 badges.
 - Stack: Python, LangChain, Flask, FastAPI, TensorFlow, PyTorch, OpenCV, Scikit-learn, Docker, MongoDB, Django, REST APIs, HTML/CSS/JS/TypeScript/React/Next.js, Git/GitHub, Vercel/Netlify, Hugging Face, FAISS, BM25, Streamlit, YOLOv8.
-- Featured project: Pakistan Legal Advisor — a multilingual (Urdu & English) RAG-based legal assistant combining FAISS + BM25 retrieval with re-ranking over a legal knowledge base, generating grounded answers via an LLM.
-- Digit Recognition System — CNN trained on MNIST with 92% accuracy, deployed via Flask/Hugging Face.
-- AI-Powered Trading Bot — uses OpenCV for chart analysis plus Python logic to generate buy/sell trading signals.
-- Face Recognition System — real-time face detection/recognition with OpenCV and FaceNet for edge devices.
+- Featured project: Pakistan Legal Advisor a multilingual (Urdu & English) RAG-based legal assistant combining FAISS + BM25 retrieval with re-ranking over a legal knowledge base, generating grounded answers via an LLM.
+- Digit Recognition System CNN trained on MNIST with 92% accuracy, deployed via Flask/Hugging Face.
+- AI-Powered Trading Bot uses OpenCV for chart analysis plus Python logic to generate buy/sell trading signals.
+- Face Recognition System real-time face detection/recognition with OpenCV and FaceNet for edge devices.
 - Experience: Computer Operator at Citizen Police Liaison Committee (CPLC), SBA, Jan 2022 - Jan 2023 — managed computer systems/databases, data entry/verification/reporting, troubleshooting.
 - I'm seeking full-time AI Engineer, Intelligent Systems Developer, or Software Engineer roles, plus strategic technical collaborations. GitHub: github.com/nazim-hussain1, LinkedIn: linkedin.com/in/nazim-hussain-508b49212
 
-Keep answers short (2-4 sentences) unless asked for detail. If asked something not covered above, say you're not 100% sure and suggest reaching out via the contact section or email — don't invent facts. Stay in the first-person Nazim voice throughout, including for this fallback.`;
+Keep answers short (2-4 sentences) unless asked for detail. Write in plain flowing sentences — never use dashes, hyphens, em dashes, or bullet points in your replies, even for lists (use words like "and" or separate sentences instead). If asked something not covered above, say you're not 100% sure and suggest reaching out via the contact section or email — don't invent facts. Stay in the first-person Nazim voice throughout, including for this fallback.`;
 
   const fab = document.getElementById('chatFab');
   const panel = document.getElementById('chatPanel');
@@ -1299,7 +1302,10 @@ Keep answers short (2-4 sentences) unless asked for detail. If asked something n
       });
       const data = await res.json();
       typingEl.remove();
-      const reply = data.reply || data.error || "Something went wrong — please try again.";
+      const rawReply = data.reply || data.error || "Something went wrong — please try again.";
+      const reply = rawReply
+        .replace(/^\s*[-–—•]\s+/gm, '')
+        .replace(/\s*[–—]\s*/g, ' ');
       addMessage(reply, 'bot');
       history.push({ role: 'assistant', content: reply });
       speak(reply);
