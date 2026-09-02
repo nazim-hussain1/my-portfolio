@@ -419,10 +419,19 @@ section {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 3rem;
-  align-items: start;
+  align-items: center; /* Changed from 'start' to 'center' */
 }
 
-.about-text p { color: var(--text-dim); margin-bottom: 1.2rem; }
+.about-text p { 
+  color: var(--text-dim); 
+  margin-bottom: 1.2rem; 
+}
+.about-text p:first-child {
+  margin-top: 0; /* Ensures no extra spacing at the top */
+}
+.about-text p:last-child {
+  margin-bottom: 0; /* Prevents trailing margin from affecting alignment */
+}
 .about-text strong { color: var(--text); font-weight: 600; }
 
 .info-card {
@@ -850,24 +859,20 @@ footer {
 <section id="about">
   <div class="section-head reveal">
     <div class="section-tag">About</div>
-    <h2>Who I am</h2>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
       <p>
-        I'm a <strong>final-year Bachelor of Science in Artificial Intelligence</strong> student at
-        Quaid-e-Awam University of Engineering, Sciences &amp; Technology, expecting to graduate in 2026.
+        This is <strong>Nazim Hussain</strong>, an AI Engineer with a BS in Artificial Intelligence
+        from Quaid-e-Awam University of Engineering, Science &amp; Technology.
       </p>
       <p>
-        My work spans <strong>Machine Learning, Deep Learning, and Computer Vision</strong> building
-        systems like digit recognition models, automated trading bots, and real-time face recognition
-        applications. More recently I've focused on <strong>LLMs, RAG pipelines, and vector search</strong>,
-        combining FAISS and BM25 retrieval with re-ranking to build applications like a multilingual
-        legal advisor.
-      </p>
-      <p>
-        <strong>My stack:</strong> Python, LangChain, Flask, FastAPI, TensorFlow, OpenCV tools I've pushed into
-        production, not just listed on a resume.
+        I specialize in Machine Learning, Deep Learning, Computer Vision, 
+        and Full Stack Development, with hands-on experience designing, 
+        training, and deploying end-to-end intelligent systems. 
+        Efficient in Large Language Models, Retrieval-Augmented Generation pipelines, 
+        and advanced hybrid search architectures to deliver high-performance, 
+        production-ready software solutions.
       </p>
     </div>
     <div class="info-card reveal">
@@ -1085,18 +1090,17 @@ footer {
       </ul>
     </div>
 
-    <div class="timeline-item reveal">
-      <div class="timeline-date">Expected Graduation 2026</div>
-      <h3>BS Artificial Intelligence</h3>
-      <h4>Quaid-e-Awam University of Engineering, Sciences &amp; Technology</h4>
+<div class="timeline-item reveal">
+      <div class="timeline-date">Graduated 2026</div>
+      <h3>BS Artificial Intelligence (CGPA 3.42/4.00)</h3>
+      <h4>Quaid-e-Awam University of Engineering, Science &amp; Technology</h4>
       <ul>
-        <li>Final year Student in Artificial Intelligence with a strong academic focus on Machine Learning, Deep Learning, Computer Vision, and Natural Language Processing</li>
-        <li>Actively engaged in advanced coursework including Neural Networks, Transformers, Computer Vision, NLP, MLOps, and Optimization Techniques</li>
-        <li>Built several end-to-end AI projects as part of academic requirements and personal initiatives, including a multilingual RAG-based Legal Advisor, real-time Facial Recognition System, Digit Recognition model, and AI-powered Trading Bot</li>
-        <li>Developed practical skills in modern AI frameworks and tools such as PyTorch, TensorFlow/Keras, LangChain, OpenCV, FAISS, and deployment platforms (FastAPI, Docker, Streamlit)</li>
-        <li>Active participant in Kaggle competitions, earning 9 badges and consistently applying classroom concepts to real-world datasets</li>
-        <li>Collaborated on group projects and research-oriented assignments, focusing on building production-ready AI systems with emphasis on performance, scalability, and ethical AI practices</li>
-        <li>Regularly attend seminars, workshops, and technical sessions organized by the university's AI &amp; Computing department to stay updated with emerging technologies</li>
+        <li>Graduate in Artificial Intelligence with strong expertise in Machine Learning, Deep Learning, Computer Vision, and Natural Language Processing.</li>
+        <li>Completed advanced coursework covering Neural Networks, Transformer architectures, Computer Vision, NLP, and model optimization techniques.</li>
+        <li>Designed, trained, and deployed end-to-end intelligent systems, including a bilingual legal assistance platform, real-time face detection software, custom digit recognition models, and automated trading signal algorithms.</li>
+        <li>Proficient across the full software and intelligence lifecycle using modern AI frameworks, web backend tools, and database technologies.</li>
+        <li>Active participant in Kaggle technical challenges, earning 9 badges and consistently applying machine learning principles to complex datasets.</li>
+        <li>Focused on building production-ready AI software solutions with emphasis on high performance, reliability, and fast response times.</li>
       </ul>
     </div>
 
@@ -1111,9 +1115,11 @@ footer {
       <h2>Let's build something</h2>
     </div>
     <p>
-      I'm actively seeking AI/ML internships, full-time opportunities, and impactful collaborations.
-      Whether you're hiring, building, or exploring innovative ideas, I'd love to connect.
-    </p>
+  I am seeking full-time <strong>AI Engineer, Intelligent Systems Developer, 
+  or Software Engineer</strong> positions, as well as strategic technical collaborations. 
+  Whether you are scaling an engineering team, developing intelligent solutions, 
+  or launching new initiatives, I would welcome the opportunity to connect.
+</p>
     <div class="contact-links">
       <a href="https://github.com/nazim-hussain1/" target="_blank" rel="noopener" class="btn btn-primary">GitHub</a>
       <a href="https://www.linkedin.com/in/nazim-hussain-508b49212/" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn</a>
