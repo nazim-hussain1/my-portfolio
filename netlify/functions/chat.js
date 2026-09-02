@@ -43,7 +43,7 @@ export async function handler(event) {
         "X-Title": "Nazim Hussain Portfolio Assistant"
       },
       body: JSON.stringify({
-        model: process.env.OPENROUTER_MODEL || "openai/gpt-4o-mini",
+        model: process.env.OPENROUTER_MODEL || "openrouter/free",
         messages,
         max_tokens: 500,
         temperature: 0.7
