@@ -147,20 +147,29 @@ nav {
 .nav-right { display: flex; align-items: center; gap: 0.7rem; }
 
 .theme-toggle {
-  background: var(--surface);
+  position: relative;
+  background: var(--bg-soft);
   border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 999px;
+  width: 3.1rem;
+  height: 1.7rem;
+  padding: 0;
   cursor: pointer;
-  font-size: 1.05rem;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
-.theme-toggle:hover { transform: rotate(18deg) scale(1.05); }
+.theme-toggle .toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+body[data-theme="light"] .theme-toggle .toggle-thumb { transform: translateX(1.35rem); }
+.theme-toggle:hover { box-shadow: var(--shadow); }
 .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .mobile-toggle {
@@ -738,7 +747,7 @@ footer {
   transition: transform 0.25s ease;
 }
 .chat-fab:hover { transform: scale(1.08); }
-.chat-fab svg { width: 1.6rem; height: 1.6rem; fill: #fff; }
+.chat-fab svg { width: 1.6rem; height: 1.6rem; fill: var(--on-accent); }
 
 .chat-panel {
   position: fixed;
@@ -855,7 +864,9 @@ footer {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    <button class="theme-toggle" id="themeToggle" role="switch" aria-checked="false" aria-label="Toggle light and dark theme">
+      <span class="toggle-thumb"></span>
+    </button>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">☰</button>
   </div>
 </nav>
@@ -877,7 +888,7 @@ footer {
     <div class="orb-wrap">
       <div class="orbit"></div>
       <div class="orbit orbit-2"></div>
-      <div class="orb"><img src="Portfolio Portrait.jpeg" alt="Nazim Hussain" class="orb-img"></div>git
+      <div class="orb"><img src="Portfolio Portrait.jpeg" alt="Nazim Hussain" class="orb-img"></div>
       <div class="float-chip chip-1">RAG</div>
       <div class="float-chip chip-2">LLMs</div>
       <div class="float-chip chip-3">Computer Vision</div>
@@ -1219,7 +1230,7 @@ footer {
 
   function setTheme(theme) {
     body.setAttribute('data-theme', theme);
-    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    toggle.setAttribute('aria-checked', theme === 'light');
     localStorage.setItem('theme', theme);
   }
 
