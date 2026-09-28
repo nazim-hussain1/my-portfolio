@@ -184,7 +184,6 @@ nav.scrolled {
   position: absolute; right: 5vw; bottom: -3vh; z-index: 1;
   height: min(91vh, 50vw); width: auto;
   mix-blend-mode: multiply;
-    filter: grayscale(1) contrast(1.06);
   pointer-events: none; user-select: none;
   animation: rise .9s ease both;
 }
@@ -199,6 +198,36 @@ nav.scrolled {
 }
 .social-icon:hover { color: var(--on-accent); background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
 .social-icon svg { width: 1rem; height: 1rem; fill: currentColor; }
+
+/* ===== DIVIDER STRIP (between hero and About) ===== */
+.strip {
+  background: var(--accent);
+  color: var(--on-accent);
+  overflow: hidden;
+  padding: 1.05rem 0;
+}
+.strip-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+.strip-track span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.strip-track span::after {
+  content: "\2726";            /* ✦ separator */
+  margin: 0 2.2rem;
+  opacity: .45;
+  font-size: .7rem;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } }
 
 /* ===== SECTION SHARED ===== */
 section {
@@ -265,46 +294,6 @@ section {
 .info-card .row:last-child { border-bottom: none; }
 .info-card .row span:first-child { color: var(--text-dim); }
 .info-card .row span:last-child { text-align: right; font-weight: 500; }
-
-/* ===== SKILLS ===== */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.4rem;
-}
-
-.skill-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.6rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.skill-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow);
-}
-
-.skill-card h3 {
-  font-family: var(--display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
-.skill-tags span {
-  font-size: 0.78rem;
-  font-weight: 500;
-  background: var(--accent-soft);
-  color: var(--text);
-  padding: 0.32rem 0.7rem;
-  border-radius: 999px;
-}
 
 /* ===== PROJECTS ===== */
 .projects-grid { display: grid; gap: 1.6rem; }
@@ -480,7 +469,6 @@ footer {
   .hero-copy { padding: 6rem 0 0; }
   .hero-portrait { position: relative; width: min(100%, 720px); height: auto; right: 0; bottom: 0; margin: 1.5rem 0 0 auto; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ===== RESPONSIVE — MOBILE ===== */
@@ -513,7 +501,6 @@ footer {
   .info-card { font-size: 0.85rem; }
   .info-card .row { flex-direction: column; gap: 0.2rem; padding: 0.75rem 0; }
   .info-card .row span:last-child { text-align: left; color: var(--text); }
-  .skills-grid { grid-template-columns: 1fr; }
   .project-card { grid-template-columns: 1fr; padding: 1.6rem; gap: 1rem; }
   .project-num { display: none; }
   .timeline { padding-left: 1.5rem; }
@@ -657,7 +644,6 @@ footer {
 <nav>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -679,7 +665,7 @@ footer {
 <header class="hero">
   <div class="hero-copy">
     <h1>Hello</h1>
-    <p class="hero-sub">— It's Nazim. AI Engineer &amp; RAG Specialist<span class="cursor"></span></p>
+    <p class="hero-sub">— It’s Nazim Hussain, AI Engineer.<span class="cursor"></span></p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects →</a>
       <a href="My Resume.pdf" class="btn btn-outline" download>Resume</a>
@@ -689,6 +675,17 @@ footer {
   <img class="hero-portrait" src="portrait-hero.webp" alt="Nazim Hussain, AI Engineer" width="1400" height="1064" fetchpriority="high">
 
   </header>
+
+<!-- DIVIDER STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>RAG Pipelines</span><span>Large Language Models</span><span>Computer Vision</span><span>Deep Learning</span><span>NLP</span><span>Full Stack Development</span><span>Python</span><span>PyTorch</span>
+    <span>RAG Pipelines</span><span>Large Language Models</span><span>Computer Vision</span><span>Deep Learning</span><span>NLP</span><span>Full Stack Development</span><span>Python</span><span>PyTorch</span>
+    <span>RAG Pipelines</span><span>Large Language Models</span><span>Computer Vision</span><span>Deep Learning</span><span>NLP</span><span>Full Stack Development</span><span>Python</span><span>PyTorch</span>
+    <span>RAG Pipelines</span><span>Large Language Models</span><span>Computer Vision</span><span>Deep Learning</span><span>NLP</span><span>Full Stack Development</span><span>Python</span><span>PyTorch</span>
+  </div>
+</div>
+
 
 <!-- ABOUT -->
 <section id="about">
@@ -717,95 +714,6 @@ footer {
       <div class="row"><span>Certifications</span><span>AI Essentials, GenAI (Coursera)</span></div>
       <div class="row"><span>Kaggle</span><span>9 badges, active</span></div>
     </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-head reveal">
-    <div class="section-tag">Skills</div>
-    <h2>What I work with</h2>
-  </div>
-  <div class="skills-grid">
-
-    <div class="skill-card reveal">
-      <h3>AI / Machine Learning</h3>
-      <div class="skill-tags">
-        <span>Python</span>
-        <span>Machine Learning</span>
-        <span>Deep Learning</span>
-        <span>PyTorch</span>
-        <span>TensorFlow</span>
-        <span>Scikit-learn</span>
-        <span>NLP</span>
-        <span>LLMs</span>
-        <span>RAG</span>
-        <span>Prompt Engineering</span>
-        <span>Fine-tuning</span>
-      </div>
-    </div>
-
-    <div class="skill-card reveal">
-      <h3>Backend</h3>
-      <div class="skill-tags">
-        <span>Flask</span>
-        <span>Django</span>
-        <span>REST APIs</span>
-        <span>MongoDB</span>
-        <span>Docker</span>
-      </div>
-    </div>
-
-    <div class="skill-card reveal">
-      <h3>AI Tools</h3>
-      <div class="skill-tags">
-        <span>OpenAI</span>
-        <span>Hugging Face</span>
-        <span>LangChain</span>
-        <span>FAISS</span>
-        <span>BM25</span>
-        <span>Streamlit</span>
-      </div>
-    </div>
-
-    <div class="skill-card reveal">
-      <h3>Frontend</h3>
-      <div class="skill-tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>Tailwind CSS</span>
-        <span>JavaScript</span>
-        <span>TypeScript</span>
-        <span>React</span>
-        <span>Next.js</span>
-      </div>
-    </div>
-
-    <div class="skill-card reveal">
-      <h3>Dev Tools</h3>
-      <div class="skill-tags">
-        <span>Git</span>
-        <span>GitHub</span>
-        <span>GitHub Actions</span>
-        <span>Docker</span>
-        <span>Vercel</span>
-        <span>Netlify</span>
-        <span>VS Code</span>
-      </div>
-    </div>
-
-    <div class="skill-card reveal">
-      <h3>Computer Vision</h3>
-      <div class="skill-tags">
-        <span>OpenCV</span>
-        <span>YOLOv8</span>
-        <span>Image Classification</span>
-        <span>Object Detection</span>
-        <span>Facial Recognition</span>
-        <span>Real-time Tracking</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
