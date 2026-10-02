@@ -18,7 +18,39 @@
 <link rel="manifest"
       href="favicon/site.webmanifest">
 
-<title>Nazim Hussain</title>
+<title>Nazim Hussain | AI Engineer – RAG, LLMs & Computer Vision</title>
+<meta name="description" content="Nazim Hussain is an AI Engineer in Karachi, Pakistan, building RAG pipelines, LLM applications and computer vision systems. See live projects including a bilingual Pakistan Legal Advisor.">
+<link rel="canonical" href="https://nazimhussainn.netlify.app/">
+<meta name="author" content="Nazim Hussain">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Google Search Console verification: paste your tag here after Step 6 -->
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nazim Hussain | AI Engineer">
+<meta property="og:description" content="RAG pipelines, LLMs and Computer Vision. Live projects and code.">
+<meta property="og:image" content="https://nazimhussainn.netlify.app/og-image.png">
+<meta property="og:url" content="https://nazimhussainn.netlify.app/">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Nazim Hussain",
+  "jobTitle": "AI Engineer",
+  "url": "https://nazimhussainn.netlify.app/",
+  "image": "https://nazimhussainn.netlify.app/portrait-hero.webp",
+  "sameAs": [
+    "https://github.com/nazim-hussain1/",
+    "https://www.linkedin.com/in/nazim-hussain-508b49212/",
+    "https://huggingface.co/nazhussain"
+  ],
+  "knowsAbout": ["Retrieval-Augmented Generation", "Large Language Models", "Computer Vision", "Machine Learning"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Karachi", "addressCountry": "PK" }
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -637,6 +669,7 @@ footer {
   .chat-panel { right: 0.8rem; left: 0.8rem; width: auto; bottom: 4.3rem; }
   .chat-fab { left: 1.2rem; bottom: 1.2rem; }
 }
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -664,11 +697,11 @@ footer {
 <!-- HERO -->
 <header class="hero">
   <div class="hero-copy">
-    <h1>Hello</h1>
+    <h1>Hello<span class="sr-only"> – I'm Nazim Hussain, AI Engineer</span></h1>
     <p class="hero-sub">— It’s Nazim Hussain, AI Engineer.<span class="cursor"></span></p>
     <div class="hero-cta">
       <a href="#projects" class="btn btn-primary">View Projects →</a>
-      <a href="My Resume.pdf" class="btn btn-outline" download>Resume</a>
+      <a href="nazim-hussain-resume.pdf" class="btn btn-outline" download>Resume</a>
     </div>
   </div>
 
@@ -691,6 +724,7 @@ footer {
 <section id="about">
   <div class="section-head reveal">
     <div class="section-tag">About</div>
+    <h2 class="sr-only">About Nazim Hussain, AI Engineer in Karachi</h2>
   </div>
   <div class="about-grid">
     <div class="about-text reveal">
@@ -705,6 +739,10 @@ footer {
         Efficient in Large Language Models, Retrieval-Augmented Generation pipelines, 
         and advanced hybrid search architectures to deliver high-performance, 
         production-ready software solutions.
+      </p>
+      <p>
+        <strong>Core stack:</strong> Python, PyTorch, TensorFlow, LangChain, FAISS, BM25,
+        FastAPI, Flask, OpenCV, YOLOv8, Hugging Face, Docker, React and Next.js.
       </p>
     </div>
     <div class="info-card reveal">
@@ -901,7 +939,7 @@ footer {
       body: data
     })
       .then(() => {
-        status.textContent = "Thanks your message git is in! I'll get back to you soon.";
+        status.textContent = "Thanks, your message is in! I'll get back to you soon.";
         status.classList.add('success');
         form.reset();
       })
